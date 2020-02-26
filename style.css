@@ -1,0 +1,24 @@
+.event-administration{
+    padding-top: 3rem;
+}
+.event-table{
+    padding-top: 4rem;
+}
+.add-event{
+    text-align: right;
+}
+.event-search{
+    padding-top: 1rem;
+}
+input{
+    width: 100%;
+}
+.search-label{
+    text-align: right;
+}
+.search-button{
+    text-align: right;
+}
+.top-sm{
+    padding-top: .5rem;
+}
