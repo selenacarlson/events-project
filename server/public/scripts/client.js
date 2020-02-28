@@ -59,7 +59,6 @@ $( document ).ready( function(){
         eventSearch.seTitle = title;
         eventSearch.seStartDate = formatDate(afterDate);
         eventSearch.seEndDate = formatDate(beforeDate);
-        console.log('search', eventSearch);
         searchForEvent(eventSearch); 
     });
 
@@ -142,7 +141,7 @@ $( document ).ready( function(){
         let seDescription = $("#event-description").val();
         let seUrl = $("#event-url").val();
         let seActive = $("#hide-event").is(':checked');
-        
+
         if(seTitle == "" || seStartDate == undefined){
             $("#required-fields-error").css("display", "block");
         } else{
@@ -226,7 +225,6 @@ $( document ).ready( function(){
 
     //checks for character limits and displays error if limit is exceeded
     $("#event-title-search").keydown(function(){
-        console.log($("#event-title-search").val().length);
         if ($("#event-title-search").val().length > 129){
             $("#event-title-search-error").css("display", "block");
         } else{
