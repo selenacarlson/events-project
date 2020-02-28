@@ -1,3 +1,18 @@
+input{
+    width: 100%;
+}
+a:link {
+    text-decoration: underline;
+}
+.top-sm{
+    padding-top: .5rem;
+}
+.top-md{
+    margin-top: 1rem;
+}
+.error{
+    display: none;
+}
 .event-administration{
     padding-top: 3rem;
 }
@@ -7,25 +22,12 @@
 .event-search{
     padding-top: 1rem;
 }
-input{
-    width: 100%;
-}
-.top-sm{
-    padding-top: .5rem;
-}
 .checkbox-container{
     margin-left: 18px;
 }
 .form-check-label{
     margin-left: 5px;
 }
-.search-button{
-    margin-top: 1rem;
-}
-.add-event{
-    margin-top: 1rem;
-}
-
 @media only screen and (min-width: 768px) {
     .search-button{
         text-align: right;
@@ -36,13 +38,8 @@ input{
         margin-top: 0;
     }
 }
-
 @media only screen and (min-width: 575px){
-    .search-label{
+    .input-label{
         text-align: right;
     }
-}
-
-.error{
-    display: none;
 }

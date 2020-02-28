@@ -3,6 +3,7 @@
     <head>
         <script src="./vendors/jquery.js"></script>
         <script src="./scripts/client.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
         <link rel="stylesheet" href="./styles/style.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -16,7 +17,7 @@
                 <div class="row event-search">
                     <div class="col-sm-12 col-md-9">
                         <div class="row">
-                            <div class="col-xs-12 col-sm-4 search-label">
+                            <div class="col-xs-12 col-sm-4 input-label">
                                 <label for="event-title-search">Event Title Contains</label>
                             </div>
                             <div class="col-xs-12 col-sm-8">
@@ -25,7 +26,7 @@
                             <div id="event-title-search-error" class="error col-xs-12 col-sm-8 offset-sm-4 text-danger">Event title cannot exceed 128 characters.</div>
                         </div>
                         <div class="row top-sm">
-                            <div class="col-xs-12 col-sm-4 search-label">
+                            <div class="col-xs-12 col-sm-4 input-label">
                                 <label for="start-date-after-search">Start Date After</label>
                             </div>
                             <div class="col-xs-12 col-sm-5">
@@ -33,18 +34,18 @@
                             </div>
                         </div>
                         <div class="row top-sm">
-                            <div class="col-xs-12 col-sm-4 search-label">
+                            <div class="col-xs-12 col-sm-4 input-label">
                                 <label for="start-date-before-search">Start Date Before</label>
                             </div>
                             <div class="col-xs-12 col-sm-5">
                                 <input type="date" id="start-date-before-search">
                             </div>
-                            <div class="col-sm-8 offset-sm-4 offset-md-0 col-md-3 search-button">
+                            <div class="top-md col-sm-8 offset-sm-4 offset-md-0 col-md-3 search-button">
                                 <button type="button" id="search-events-button" class="btn btn-primary">Search Events</button>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-8 offset-sm-4 offset-md-0 col-md-3 col-md-3 add-event">
+                    <div class="top-md col-sm-8 offset-sm-4 offset-md-0 col-md-3 col-md-3 add-event">
                         <button type="button" class="btn btn-success" id="add-event-button" data-toggle="modal" data-target="#add-edit-modal">Add New Event</button>
                     </div>
                 </div>
@@ -72,8 +73,8 @@
                         </div>
                         <div class="modal-body">
                             <div class="row">
-                                <div class="col-4 search-label">
-                                    <label for="event-title">Event Title</label>
+                                <div class="col-4 input-label">
+                                    <label for="event-title">Event Title*</label>
                                 </div>
                                 <div class="col-8">
                                     <input type="text" id="event-title">
@@ -81,15 +82,15 @@
                                 <div id="event-title-error" class="error col-8 offset-4 text-danger">Event title cannot exceed 128 characters.</div>
                             </div>
                             <div class="row top-sm">
-                                <div class="col-4 search-label">
-                                    <label for="start-date-after">Start Date After</label>
+                                <div class="col-4 input-label">
+                                    <label for="start-date-after">Start Date After*</label>
                                 </div>
                                 <div class="col-5">
                                     <input type="date" id="start-date-after">
                                 </div>
                             </div>
                             <div class="row top-sm">
-                                <div class="col-4 search-label">
+                                <div class="col-4 input-label">
                                     <label for="start-date-before">Start Date Before</label>
                                 </div>
                                 <div class="col-5">
@@ -97,7 +98,7 @@
                                 </div>
                             </div>
                             <div class="row top-sm">
-                                <div class="col-4 search-label">
+                                <div class="col-4 input-label">
                                     <label for="event-location">Event Location</label>
                                 </div>
                                 <div class="col-8">
@@ -106,7 +107,7 @@
                                 <div id="event-location-error" class="error col-8 offset-4 text-danger">Event location cannot exceed 128 characters.</div>
                             </div>
                             <div class="row top-sm">
-                                <div class="col-4 search-label">
+                                <div class="col-4 input-label">
                                     <label for="event-description">Event Description</label>
                                 </div>
                                 <div class="col-8">
@@ -115,7 +116,7 @@
                                 <div id="event-description-error" class="error col-8 offset-4 text-danger">Event description cannot exceed 4000 characters.</div>
                             </div>
                             <div class="row top-sm">
-                                <div class="col-4 search-label">
+                                <div class="col-4 input-label">
                                     <label for="event-url">Event URL</label>
                                 </div>
                                 <div class="col-8">
@@ -130,6 +131,9 @@
                                         <label class="form-check-label" for="hide-event">Hide Event</label>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row">
+                                <div id="required-fields-error" class="error text-danger col-12">*Please fill out required fields.</div>
                             </div>
                         </div>
                         <div class="modal-footer">
