@@ -1,5 +1,4 @@
 $( document ).ready( function(){
-
     let eventToSet = {};
     let eventSearch = {};
     
@@ -12,7 +11,6 @@ $( document ).ready( function(){
     let eventToEdit;
 
     $("#add-event-button").click(function(){
-        console.log('adding');
         addEventMode = true;
     });
 
@@ -42,10 +40,8 @@ $( document ).ready( function(){
         eventSearch.seTitle = title;
         eventSearch.seStartDate = afterDate;
         eventSearch.seEndDate = beforeDate;
-        console.log('event to search', eventSearch);
-        searchForEvent(eventSearch);
-        
-        console.log(JSON.stringify(eventSearch));
+
+        searchForEvent(eventSearch); 
     });
 
     //creates event object to send to API
@@ -55,7 +51,8 @@ $( document ).ready( function(){
             eventToSet.id = id;
         } else if(addEventMode) {
             eventToSet.id = 0;
-        }
+        };
+
         eventToSet.title = $("#event-title").val();
         eventToSet.startDateAfter = $("#start-date-after").val();
         eventToSet.startDateBefore = $("#start-date-before").val();
@@ -70,15 +67,7 @@ $( document ).ready( function(){
         addEventMode = false;
     });
 
-    $("#cancel-button").click(function(){
-        console.log('canceling');
-        clearAddEditForm();
-        editEventMode = false;
-        addEventMode = false;
-    });
-
-    $("#close-button").click(function(){
-        console.log('closing');
+    $(".close-button").click(function(){
         clearAddEditForm();
         editEventMode = false;
         addEventMode = false;
@@ -131,14 +120,16 @@ $( document ).ready( function(){
     function displayEvents(events){
         let $tr = $('<tbody></tbody>');
         for (let event of events){
+            let date = new Date(event.seStartDate); 
+            let dateString = date.toLocaleDateString();
             $tr.append(`
             <tr>
-            <td> <a href="" id="${event.seID}" data-toggle="modal" data-target="#exampleModal"> ${event.seTitle} </a> </td>
-            <td> ${event.seStartDate} </td>
+            <td> <a href="" id="${event.seID}" data-toggle="modal" data-target="#add-edit-modal"> ${event.seTitle} </a> </td>
+            <td> ${dateString} </td>
             <td> ${event.seDescription} </td>
             </tr>
-            `)
-        }
+            `);
+        };
         $("#event-table-body").append($tr);
     };
 
@@ -185,18 +176,56 @@ $( document ).ready( function(){
 
     //closes the modal when finished adding/editing an event
     function closeModal(){
-        //add function to close modal
+        $('#add-edit-modal').modal('hide');
     };
 
-    
+    //autofills edit modal
     function autofillEditForm(event){
         $("#event-title").val(event.seTitle);
-        $("#start-date-after").val(event.seStartDate); 
-        $("#start-date-before").val(event.seEndDate);
+        $("#start-date-after").val(event.seStartDate.substring(0, 10)); 
+        $("#start-date-before").val(event.seEndDate.substring(0, 10));
         $("#event-location").val(event.seLocation);
         $("#event-description").val(event.seDescription);
         $("#event-url").val(event.seUrl);
         $("#hide-event").prop( "checked", event.seActive);
     };
+
+    //checks for character limits and displays error if exceeded
+    $("#event-title-search").keydown(function(){
+        console.log($("#event-title-search").val().length);
+        if ($("#event-title-search").val().length > 129){
+            $("#event-title-search-error").css("display", "block");
+        } else{
+            $("#event-title-search-error").css("display", "none");
+        }
+    });
+    $("#event-title").keydown(function(){
+        if ($("#event-title").val().length > 129){
+            $("#event-title-error").css("display", "block");
+        } else{
+            $("#event-title-error").css("display", "none");
+        }
+    });
+    $("#event-location").keydown(function(){
+        if ($("#event-location").val().length > 129){
+            $("#event-location-error").css("display", "block");
+        } else {
+            $("#event-location-error").css("display", "none");
+        }       
+    });
+    $("#event-description").keydown(function(){
+        if ($("#event-description").val().length > 4001){
+            $("#event-description-error").css("display", "block");
+        } else{
+            $("#event-description-error").css("display", "none");
+        }        
+    });
+    $("#event-url").keydown(function(){
+        if ($("#event-url").val().length > 2049){
+            $("#event-url-error").css("display", "block");
+        } else{
+            $("#event-url-error").css("display", "none");
+        }      
+    });
 
 });

@@ -4,21 +4,45 @@
 .event-table{
     padding-top: 4rem;
 }
-.add-event{
-    text-align: right;
-}
 .event-search{
     padding-top: 1rem;
 }
 input{
     width: 100%;
 }
-.search-label{
-    text-align: right;
-}
-.search-button{
-    text-align: right;
-}
 .top-sm{
     padding-top: .5rem;
+}
+.checkbox-container{
+    margin-left: 18px;
+}
+.form-check-label{
+    margin-left: 5px;
+}
+.search-button{
+    margin-top: 1rem;
+}
+.add-event{
+    margin-top: 1rem;
+}
+
+@media only screen and (min-width: 768px) {
+    .search-button{
+        text-align: right;
+        margin-top: 0;
+    }
+    .add-event{
+        text-align: right;
+        margin-top: 0;
+    }
+}
+
+@media only screen and (min-width: 575px){
+    .search-label{
+        text-align: right;
+    }
+}
+
+.error{
+    display: none;
 }
